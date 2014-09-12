@@ -9,7 +9,7 @@ for ( var i = 0; i < data.length; i++ ) {
 }
 
 // Create a writeable stream:
-var writeable = eventStream.map( function( d, clbk ){
+var writeable = eventStream.map( function ( d, clbk ){
 		clbk( null, d.toString()+'\n' );
 	});
 

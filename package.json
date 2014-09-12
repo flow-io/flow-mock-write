@@ -27,7 +27,9 @@
     "flow",
     "flow.io",
     "mock",
-    "testing"
+    "testing",
+    "streams1",
+    "classic streams"
   ],
   "bugs": {
     "url": "https://github.com/flow-io/flow-mock-write/issues"

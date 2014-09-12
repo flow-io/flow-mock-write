@@ -7,6 +7,9 @@ var // Expectation library:
 	// Event stream:
 	through = require( 'through2' ),
 
+	// Event emitter:
+	EventEmitter = require( 'events' ).EventEmitter,
+
 	// Module to be tested:
 	mock = require( './../lib' );
 
@@ -48,6 +51,31 @@ describe( 'flow-mock-write', function tests() {
 			assert.deepEqual( data, actual );
 			done();
 		}
+	});
+
+	it( 'should wait until a writeable stream has drained', function test( done ) {
+		var data = [ 1, 2, 3, 4],
+			idx = 0,
+			stream;
+
+		stream = new EventEmitter();
+
+		stream.write = function( value ) {
+			assert.strictEqual( data[idx], value );
+			idx += 1;
+
+			// Force next event-loop...
+			setTimeout( function() {
+				stream.emit( 'drain', null );
+			}, 0 );
+			return false;
+		};
+		stream.end = function() {
+			assert.ok( true );
+			done();
+		};
+
+		mock( data, stream );
 	});
 
 });
