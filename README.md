@@ -58,7 +58,7 @@ $ node ./examples/index.js
 
 ## Notes
 
-The method falls within the [classic stream](https://github.com/substack/stream-handbook#classic-streams) paradigm in Node; e.g., using `write()` and `end()` methods.
+The mock implements the [classic stream](https://github.com/substack/stream-handbook#classic-streams) paradigm in Node; e.g., using `write()` and `end()` methods.
 
 
 ## Tests
