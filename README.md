@@ -14,64 +14,40 @@ $ npm install flow-mock-write
 For use in the browser, use [browserify](https://github.com/substack/node-browserify).
 
 
-## API
-
-To create a stream factory,
-
-``` javascript
-var flowFactory = require( 'flow-mock-write' );
-
-// Create a new factory:
-var flowStream = flowFactory();
-```
-
-### flowStream.stream()
-
-To create a new stream,
-
-``` javascript
-var stream = flowStream.stream();
-```
-
-
 ## Usage
 
-Methods are chainable.
+To create a mock readable stream,
 
 ``` javascript
-flowFactory()
-	.stream()
-	.pipe( /* writable stream */ );
+var mock = require( 'flow-mock-write' );
 ```
 
+The method accepts two input arguments: an array of values to write and a writeable stream.
+
+``` javascript
+var eventStream = require( 'event-stream' );
+
+// Simulate some data:
+var data = new Array( 100 );
+
+for ( var i = 0; i < data.length; i++ ) {
+	data[ i ] = Math.random()*100;
+}
+
+// Create a writeable stream:
+var writeable = eventStream.map( function( d, clbk ){
+		clbk( null, d.toString()+'\n' );
+	});
+
+// Pipe to standard out:
+writeable.pipe( process.stdout );
+
+// Start streaming...
+mock( data, writeable );
+```
 
 
 ## Examples
-
-``` javascript
-var eventStream = require( 'event-stream' ),
-	flowFactory = require( 'flow-mock-write' );
-
-// Create some data...
-var data = new Array( 1000 );
-for ( var i = 0; i < data.length; i++ ) {
-	data[ i ] = Math.random();
-}
-
-// Create a readable stream:
-var readStream = eventStream.readArray( data );
-
-// Create a new stream:
-var stream = flowFactory().stream();
-
-// Pipe the data:
-readStream
-	.pipe( stream )
-	.pipe( eventStream.map( function( d, clbk ){
-		clbk( null, d.toString()+'\n' );
-	}))
-	.pipe( process.stdout );
-```
 
 To run the example code from the top-level application directory,
 

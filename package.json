@@ -25,7 +25,9 @@
   "keywords": [
     "stream",
     "flow",
-    "flow.io"
+    "flow.io",
+    "mock",
+    "testing"
   ],
   "bugs": {
     "url": "https://github.com/flow-io/flow-mock-write/issues"
@@ -33,10 +35,11 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "1.x.x",
-    "mocha": "1.x.x",
     "coveralls": "^2.11.1",
+    "event-stream": "^3.1.7",
     "istanbul": "^0.3.0",
-    "event-stream": "^3.1.7"
+    "mocha": "1.x.x",
+    "through2": "^0.6.1"
   },
   "licenses": [
     {
