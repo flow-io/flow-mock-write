@@ -29,18 +29,18 @@ describe( 'flow-mock-write', function tests() {
 		expect( mock ).to.be.a( 'function' );
 	});
 
-	it( 'should write to a writeable stream', function test( done ) {
+	it( 'should write to a writable stream', function test( done ) {
 		var data = new Array( 100 ),
 			actual = [],
-			writeable;
+			writable;
 
 		for ( var i = 0; i < data.length; i++ ) {
 			data[ i ] = Math.random()*100;
 		}
 
-		writeable = through({'objectMode':true}, onData, onEnd );
+		writable = through({'objectMode':true}, onData, onEnd );
 
-		mock( data, writeable );
+		mock( data, writable );
 
 		function onData( chunk, enc, clbk ) {
 			actual.push( chunk );
@@ -53,7 +53,7 @@ describe( 'flow-mock-write', function tests() {
 		}
 	});
 
-	it( 'should wait until a writeable stream has drained', function test( done ) {
+	it( 'should wait until a writable stream has drained', function test( done ) {
 		var data = [ 1, 2, 3, 4],
 			idx = 0,
 			stream;

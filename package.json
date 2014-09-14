@@ -1,7 +1,7 @@
 {
   "name": "flow-mock-write",
   "version": "1.0.0",
-  "description": "Provides a mock source for writeable streams.",
+  "description": "Provides a mock source for writable streams.",
   "author": {
     "name": "Athan Reines",
     "email": "kgryte@gmail.com"

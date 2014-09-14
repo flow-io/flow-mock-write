@@ -2,7 +2,7 @@ flow-mock-write
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Provides a mock source for writeable streams.
+> Provides a mock source for writable streams.
 
 
 ## Installation
@@ -16,13 +16,13 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 
 ## Usage
 
-To create a mock readable stream,
+To create a mock for writing to writable streams,
 
 ``` javascript
 var mock = require( 'flow-mock-write' );
 ```
 
-The method accepts two input arguments: an array of values to write and a writeable stream.
+The method accepts two input arguments: an array of values to write and a writable stream.
 
 ``` javascript
 var eventStream = require( 'event-stream' );
@@ -34,16 +34,16 @@ for ( var i = 0; i < data.length; i++ ) {
 	data[ i ] = Math.random()*100;
 }
 
-// Create a writeable stream:
-var writeable = eventStream.map( function( d, clbk ){
+// Create a writable stream:
+var writable = eventStream.map( function( d, clbk ){
 		clbk( null, d.toString()+'\n' );
 	});
 
 // Pipe to standard out:
-writeable.pipe( process.stdout );
+writable.pipe( process.stdout );
 
 // Start streaming...
-mock( data, writeable );
+mock( data, writable );
 ```
 
 
